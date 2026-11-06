@@ -1,6 +1,7 @@
 plugins {
     // This plugin applies the correct loom variant based on the Minecraft version
     id("dev.kikugie.loom-back-compat")
+    id("dev.kikugie.stonecutter") version "0.9.8" // Make sure this is present
 }
 
 // DO NOT set group = ...!
@@ -49,6 +50,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${property("deps.fabric_loader")}")
     fapi("fabric-lifecycle-events-v1", "fabric-resource-loader-v0", "fabric-content-registries-v0", "fabric-registry-sync-v0")
 }
+
 
 loom {
     fabricModJsonPath = rootProject.file("src/main/resources/fabric.mod.json") // Useful for interface injection
@@ -116,5 +118,18 @@ tasks {
         // loomx.mod(Sources)Jar returns the jar task for the applied loom variant
         from(loomx.modJar.flatMap { it.archiveFile }, loomx.modSourcesJar.flatMap { it.archiveFile })
         into(rootProject.layout.buildDirectory.file("libs/${project.property("mod.version")}"))
+    }
+}
+
+subprojects {
+    apply(plugin = "dev.architectury.loom")
+
+    // This tells Stonecutter to process the preprocessor tags (//? if)
+    plugins.withId("dev.kikugie.stonecutter") {
+        // stonecutter handles source remapping automatically
+    }
+
+    tasks.withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
     }
 }
