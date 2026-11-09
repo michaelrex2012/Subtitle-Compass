@@ -5,7 +5,7 @@
   "name": "${name}",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Quark19"
   ],
   "contact": {
     "homepage": "https://stonecutter.kikugie.dev/",
@@ -15,8 +15,8 @@
   "icon": "assets/template/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "com.example.MainClient"
+    "client": [
+      "quark.subcompass.SubtitleCompassMod"
     ]
   },
   "mixins": [

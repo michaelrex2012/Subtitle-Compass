@@ -1,9 +1,9 @@
 {
   "required": true,
-  "package": "com.example.mixin",
-  "compatibilityLevel": "${java}",
+  "package": "quark.subcompass.mixin",
+  "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "ExampleMixin"
+    "SoundManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

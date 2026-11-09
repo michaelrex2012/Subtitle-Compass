@@ -1,5 +1,5 @@
 # See https://stonecutter.kikugie.dev/wiki/config/properties#centralized-properties
-mod.id = "Subtitle-Compass"
+mod.id = "subcompass"
 mod.name = "Subtitle-Compass"
 mod.group = "quark.subcompass"
 mod.version = "1.0.0"
