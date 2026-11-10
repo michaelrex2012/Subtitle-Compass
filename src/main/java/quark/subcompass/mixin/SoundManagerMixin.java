@@ -13,15 +13,11 @@ import quark.subcompass.SoundTracker;
 @Mixin(SoundManager.class)
 public class SoundManagerMixin {
     @Inject(method = "play", at = @At("HEAD"))
-    private void onPlaySound(SoundInstance sound, CallbackInfoReturnable<SoundEngine.PlayResult> cir) { // Fixed parameter to CallbackInfo
-        if (sound != null) {
+    private void onPlaySound(SoundInstance sound, CallbackInfoReturnable<SoundEngine.PlayResult> cir) {
+        if (sound != null && sound.getSource() != null) {
             Vec3 pos = new Vec3(sound.getX(), sound.getY(), sound.getZ());
-            String name = sound.getIdentifier().getPath();
-
-            // Protect against instances where source might be null
-            if (sound.getSource() != null) {
-                SoundTracker.addSound(pos, sound.getSource(), name);
-            }
+            String soundId = sound.getIdentifier().toString(); // Corrected for 26.3
+            SoundTracker.addSound(pos, sound.getSource(), soundId);
         }
     }
 }
